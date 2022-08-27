@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, ScrollView } from "react-native";
 
 const Home = () => {
    return (
-       <View>
-          <Text>hey</Text>
-       </View>
+       <SafeAreaView>
+          <ScrollView>
+            
+          </ScrollView>
+       </SafeAreaView>
    );
 };
 
