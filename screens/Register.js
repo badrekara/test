@@ -3,6 +3,7 @@ import { KeyboardAvoidingView } from "react-native";
 import { View, StyleSheet } from "react-native";
 import { Button, Input, Text } from "@rneui/themed";
 import { useState, useLayoutEffect } from "react";
+import { auth } from "../firebase";
 
 
 const Register = ({ navigation }) => {
@@ -18,7 +19,16 @@ const Register = ({ navigation }) => {
     }, [navigation])
 
     const register = () => {
-
+        auth
+        .createUserWithEmailAndPassword(email, password)
+        .then(authUser => {
+            authUser.user.update({
+                displayName: name,
+                photoURL: imageUrl || 
+                "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",
+            });
+        })
+        .catch((error) => alert(error.message));
     };
 
     return (
