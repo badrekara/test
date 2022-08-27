@@ -22,7 +22,7 @@ const Register = ({ navigation }) => {
         auth
         .createUserWithEmailAndPassword(email, password)
         .then(authUser => {
-            authUser.user.update({
+            authUser.user.updateProfile({
                 displayName: name,
                 photoURL: imageUrl || 
                 "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",
