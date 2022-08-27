@@ -10,11 +10,13 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 
 useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
         if(authUser) {
             navigation.replace("Home");
         }
     });
+
+    return unsubscribe;
 }, []);
 
 const signIn = () => {};
