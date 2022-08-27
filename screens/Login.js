@@ -1,15 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { Input, Image, Button } from '@rneui/themed';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
+import { auth } from "../firebase";
 
 const Login = ({ navigation }) => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
-const signIn = () => {
 
-};
+useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+        if(authUser) {
+            navigation.replace("Home");
+        }
+    });
+}, []);
+
+const signIn = () => {};
 
     return (
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
