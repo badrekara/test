@@ -13,7 +13,7 @@ const Register = ({ navigation }) => {
 
     useLayoutEffect(() => {
        navigation.setOptions({
-            
+            headerBackTitle: "Login"
        })
     }, [navigation])
 
