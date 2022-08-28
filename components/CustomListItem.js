@@ -1,10 +1,25 @@
 import { Text, View, StyleSheet } from "react-native";
+import { Avatar, ListItem } from "@rneui/themed";
 
-const CustomListItem = () => {
+const CustomListItem = ({ id, chatName, enterChat }) => {
     return (
-        <View>
-            <Text></Text>
-        </View>
+        <ListItem>
+            <Avatar 
+               rounded
+               source={{
+                uri:
+                  "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png",
+               }}
+            />
+            <ListItem.Content>
+                <ListItem.Title style={{ fontWeight: "800" }}>
+                    Test
+                </ListItem.Title>
+                <ListItem.Subtitle numberOfLines={1} ellipsizeMode="tail">
+                    Information
+                </ListItem.Subtitle>
+            </ListItem.Content>
+        </ListItem>
     )
 } 
 

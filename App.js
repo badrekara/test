@@ -6,6 +6,7 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Home from './screens/Home';
+import AddChat from './screens/AddChat';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,10 +20,12 @@ const globalScreenOptions = {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={globalScreenOptions}>
+      <Stack.Navigator 
+           screenOptions={globalScreenOptions}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="AddChat" component={AddChat} />
       </Stack.Navigator>
     </NavigationContainer>
   );
