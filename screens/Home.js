@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import CustomListItem from "../components/CustomListItem";
 import { Avatar } from "@rneui/themed";
@@ -7,12 +7,27 @@ import { AntDesign, SimpleLineIcons, EvilIcons } from "@expo/vector-icons";
 
 
 const Home = ({navigation}) => {
+
+   const [ chats, setChats ] = useState([]);
    
    const signOutUser = () => {
       auth.signOut().then(() => {
-         navigation.replace("Login")
-      })
-   }
+         navigation.replace("Login");
+      });
+   };
+
+   useEffect(() => {
+      const unsubscribe = db.collection('chats').onSnapshot(snapshot => (
+         setChats(
+            snapshot.docs.map(doc => ({
+            id: doc.id,
+            data: doc.data(),
+         })))
+      )
+      );
+      return unsubscribe;
+   }, [])
+
 
    useLayoutEffect(() => {
         navigation.setOptions({
@@ -50,8 +65,10 @@ const Home = ({navigation}) => {
 
    return (
        <SafeAreaView>
-          <ScrollView>
-            <CustomListItem />
+          <ScrollView style={styles.container}>
+            {chats.map(({id, data: { chatName }}) => (
+                  <CustomListItem key={id} id={id} chatName={chatName} />
+            ))}
           </ScrollView>
        </SafeAreaView>
    );
@@ -59,4 +76,10 @@ const Home = ({navigation}) => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+   container: {
+      height: "100%",
+   },
+});
+
+
