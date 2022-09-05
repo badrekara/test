@@ -3,6 +3,9 @@ import { Avatar, ListItem } from "@rneui/themed";
 
 
 const CustomListItem = ({ id, chatName, enterChat }) => {
+
+    
+
     return (
         <ListItem onPress={() => enterChat(id, chatName)} key={id} bottomDivider>
             <Avatar 
